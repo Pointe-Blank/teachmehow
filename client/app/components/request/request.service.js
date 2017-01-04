@@ -1,6 +1,6 @@
 angular
 .module('app.request')
-.factory('RequestService', function($http) {
+.factory('RequestService', function ($http) {
   const getAllRequests = () => {
     return $http({
       method: 'GET',
@@ -10,12 +10,11 @@ angular
       return requests.data;
     })
     .catch((err) => {
-      console.log('RequestController (getAllRequests): Error retrieving requests.');
+      console.log('RequestController (getAllRequests): Error retrieving requests.', err);
     });
   };
 
   const addRequest = () => {
-
     let newRequest = {};
     newRequest.userId = vm.UserId;
     newRequest.requestName = vm.requestName;
@@ -30,7 +29,7 @@ angular
       return addedRequest.data;
     })
     .catch((err) => {
-      console.log('Error posting request', error);
+      console.log('Error posting request', err);
     });
   };
 

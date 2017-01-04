@@ -27,6 +27,12 @@
               <input type="text" name="details" class="form-control" ng-model="vm.lesson.details" ng-minlength="3" required>
               <p ng-show="lessonForm.details.$error.minlength" class="help-block">details is too short.</p>
           </div>
+
+          <div class="form-group" ng-class="{ 'has-error' : lessonForm.youtubeKey.$invalid && !lessonForm.youtubeKey.$pristine }">
+              <label>Youtube Channel ID</label>
+              <input type="text" name="youtubeKey" class="form-control" ng-model="vm.lesson.youtubeKey" ng-minlength="3" required>
+              <p ng-show="lessonForm.youtubeKey.$error.minlength" class="help-block">youtube channel id is too short.</p>
+          </div>
           <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
@@ -40,6 +46,7 @@
             <th>Name</th>
             <th>Details</th>
             <th>Rating</th>
+            <th>Youtube Channel ID</th>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +55,7 @@
             <td ng-click="vm.goLesson(lesson.id)">{{lesson.name}}</td>
             <td ng-click="vm.goLesson(lesson.id)">{{lesson.details}}</td>
             <td ng-click="vm.goLesson(lesson.id)">{{lesson.rating}}</td>
+            <td ng-click="vm.goLesson(lesson.id)">{{lesson.youtubeKey}}</td>
           </tr>
         </tbody>
     </table>

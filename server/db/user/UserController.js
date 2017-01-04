@@ -22,20 +22,19 @@ module.exports = {
     })
     .catch((err) => {
       res.json(err);
-      throw err;
     });
-  }, 
+  },
 
   addOneUser: (req, res, next) => {
-   models.User.create({
-      name: req.body.name,
-      teachFlag: req.body.teachFlag,
-      rating: null,
-      bio: req.body.bio,
-      picture: req.body.picture,
-      auth: req.body.auth,
-      spare1: req.body.spare1
-    })
+    models.User.create({
+     name: req.body.name,
+     teachFlag: req.body.teachFlag,
+     rating: null,
+     bio: req.body.bio,
+     picture: req.body.picture,
+     auth: req.body.auth,
+     spare1: req.body.spare1
+   })
     .then((user) => {
       res.json(user);
     })
@@ -66,16 +65,16 @@ module.exports = {
       },
       {
         where: {
-          id:req.params.userId
+          id: req.params.userId
         }
-    })
+      })
     .then((user) => {
-      res.json(user)
+      res.json(user);
     })
     .catch((err) => {
-      res.json(err)
+      res.json(err);
       throw err;
-    })
+    });
   },
 
   updateUserTeachFlag: (req, res, next) => {
@@ -85,16 +84,16 @@ module.exports = {
       },
       {
         where: {
-          id:req.params.userId
+          id: req.params.userId
         }
-    })
+      })
     .then((user) => {
-      console.log(user)
-      res.json(user)
+      console.log(user);
+      res.json(user);
     })
     .catch((err) => {
-      res.json(err)
-    })
+      res.json(err);
+    });
   },
 
   updateUserName: (req, res, next) => {
@@ -104,15 +103,15 @@ module.exports = {
       },
       {
         where: {
-          id:req.params.userId
+          id: req.params.userId
         }
-    })
+      })
     .then((user) => {
-      console.log(user)
-      res.json(user)
+      console.log(user);
+      res.json(user);
     })
     .catch((err) => {
-      res.json(err)
-    })
-  },
+      res.json(err);
+    });
+  }
 };

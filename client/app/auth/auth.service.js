@@ -1,5 +1,5 @@
 angular.module('teachMe')
-.factory('authService', function($q, $http, $state, lock, Helpers, authManager){
+.factory('authService', function ($q, $http, $state, lock, Helpers, authManager) {
   /**
    * connect the profile sent back from Auth0 with the profile from our
    * database. If the profile does not exist in our database, create it.
@@ -29,7 +29,7 @@ angular.module('teachMe')
           bio: '',
           picture: profile.picture,
           auth: profile.user_id,
-          spare1: profile.email || profile.link            
+          spare1: profile.email || profile.link
         })
         .then((user) => {
           currentUser = user.data;
@@ -47,9 +47,9 @@ angular.module('teachMe')
             .then($state.go('prof', {
               input: currentUser.id
             }));
-          };
-        });              
-      };          
+          }
+        });
+      }
     });
   };
 
@@ -57,13 +57,13 @@ angular.module('teachMe')
    * check to see if user is already logged in. If they are, fetch
    * auth0 profile and then use that to fetch database profile
    */
-  let currentUser = localStorage.getItem('id_token');
+  let currentUser = window.localStorage.getItem('id_token');
   if (currentUser) {
     lock.getProfile(currentUser, (err, profile) => {
       if (err) throw new Error(err);
       connectProfile(profile);
     });
-  };
+  }
 
   /**
    * set up the logic for when a user authenticates
@@ -71,10 +71,10 @@ angular.module('teachMe')
    */
   let registerAuthListener = () => {
     lock.on('authenticated', (authResult) => {
-      localStorage.setItem('id_token', authResult.idToken);
+      window.localStorage.setItem('id_token', authResult.idToken);
       authManager.authenticate();
       /**
-       * Use the token sent back to get full Auth0 profile 
+       * Use the token sent back to get full Auth0 profile
        * information, then connect that to database profile
        */
       lock.getProfile(authResult.idToken, (err, profile) => {
@@ -82,16 +82,16 @@ angular.module('teachMe')
         connectProfile(profile);
       });
     });
-  }
+  };
 
   let becomeTeacher = () => {
-    return $http.put('/api/users/'+currentUser.id+'/teach', {
+    return $http.put('/api/users/' + currentUser.id + '/teach', {
       teachFlag: true
     });
   };
 
   /** basic authentication functionality */
-  let showCurrent = function(){
+  let showCurrent = function () {
     return currentUser;
   };
 
@@ -100,12 +100,12 @@ angular.module('teachMe')
   };
 
   let logout = () => {
-    localStorage.removeItem('id_token');
+    window.localStorage.removeItem('id_token');
     authManager.unauthenticate();
     currentUser = false;
-    $state.go('splash')
+    $state.go('splash');
   };
-  
+
   /** expose public methods */
   return {
     login: login,

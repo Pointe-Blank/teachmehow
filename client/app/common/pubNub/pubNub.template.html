@@ -1,0 +1,15 @@
+<div>
+    <div id="vid-box">
+    </div>
+
+        <form name="loginForm" id="login" data-ng-submit="vmPubNub.login(form)">
+            <input type="text" name="username" ng-model="form.username" placeholder="Pick a username!" />
+            <input type="submit" name="login_submit" value="Log In">
+        </form>
+
+
+        <form name="callForm" id="call" data-ng-submit="vmPubNub.makeCall(form)">
+            <input type="text" name="number" ng-model="form.number" placeholder="Enter user to dial!" />
+            <input type="submit" value="Call"/>
+        </form>
+</div>

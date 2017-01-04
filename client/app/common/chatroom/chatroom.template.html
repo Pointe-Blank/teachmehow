@@ -1,0 +1,16 @@
+<div>
+  <h1> Classroom Chat </h1>
+  <hr>
+  <div id="chat" ng-init="vmCR.chatInit()">
+    <br>
+    <p id="chatwell" class="well well-sm chat-text" ng-repeat="message in vmCR.messages track by $index">
+      {{message.user + ' '}}({{message.date | date:'h:mm a | M-d-yy'}}):<br>{{message.text}}
+    </p>
+    <a id='bottom'></a>
+  </div>
+  <hr>
+  <form ng-submit="vmCR.sendMessage()">
+    <textarea class="chat-text" style="width:100%;" ng-model="vmCR.messages.text"/>
+    <input type="submit" value="Send Message"/>
+  </form>
+</div>

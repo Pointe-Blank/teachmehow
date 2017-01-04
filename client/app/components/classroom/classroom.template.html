@@ -1,0 +1,36 @@
+
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+       <div >
+          <img ng-click="vm.goProfile(vm.Lesson.UserName.id)" class="lessonProf img-thumbnail" src="{{vm.picture}}" />
+          <p>Instructor: <a ng-click="vm.goProfile(vm.Lesson.UserName.id)">{{vm.Lesson.UserName.name}}</a></p>
+      </div>
+      <div class="well">
+        <button class="btn btn-primary btn-block" ng-click="vm.goLesson(vm.id)">Lesson Homepage</button>
+        <button class="btn btn-primary btn-block disabled">Classroom</button>
+        <button class="btn btn-primary btn-block" ng-click="vm.goPrivateRoom(vm.id)">One on One Tutoring</button>
+      </div>
+      <div class="well">
+        <h2>Related Lessons</h2><hr/>
+        <p ng-repeat="item in vm.relLessons|limitTo:3">
+          <a href="" ng-click="vm.goLesson(item.id)">{{item.name}}</a>
+        </p>
+        <p ng-show="vm.relLessons.length===0">-</p>
+        <hr/>
+        <p>Become a teacher today and submit a lesson in the <strong>{{vm.Lesson.CategoryName.name}}</strong> category!
+      </div>
+    </div>
+    <div class="col-sm-6 text-left"> 
+      <h1>{{vm.Lesson.name}}</h1>
+      <!--<h5>Current rating: {{vm.Lesson.rating}}</h5>-->
+      <h5>Category: {{vm.Lesson.CategoryName.name}}</h5>
+      <hr>
+      <youtube-stream></youtube-stream>
+      <hr>
+    </div>
+    <div class="col-sm-3 text-left"> 
+      <chatroom></chatroom>
+    </div>
+  </div>
+</div>

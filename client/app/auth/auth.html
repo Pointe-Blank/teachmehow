@@ -1,14 +1,17 @@
-<div class="authbar" ng-show="vm.authService.showCurrent()">
-  <button ng-click="vm.goProf()">Profile</button>
-  <button ng-show="vm.isTeach"
-   ng-click="vm.goDash()">
-    Dashboard
-  <button ng-hide="vm.isTeach"
-   ng-click="vm.becomeTeacher()">
-    Start Teaching!
-  </button>
-  <button ng-click="vm.authService.logout()">Log Out</button>
-</div>
-<div ng-hide="vm.authService.showCurrent()">
-  <button ng-click="vm.authService.login()">Log In/Register</button>
-</div>
+<ul class="nav navbar-nav">
+    <li><a ui-sref="splash">Home</a></li>
+    <li><a ui-sref="request">Requests</a></li>
+    <li ng-show="vm.authService.showCurrent()"><a href="" ng-click="vm.goProf()">Profile</a></li>
+    <li ng-show="vm.authService.showCurrent() && vm.isTeach">
+      <a href="" ng-click="vm.goDash()">Instructor Dashboard</a>
+    </li>
+    <li ng-show="vm.authService.showCurrent() && !vm.isTeach">
+      <a href="" ng-click="vm.becomeTeacher()">Become an Instructor!</a>
+    </li>
+    <li ng-show="vm.authService.showCurrent()">
+      <button class="btn btn-info" href="" ng-click="vm.authService.logout()">Log Out</a>
+    </li>
+    <li ng-show="!vm.authService.showCurrent()">
+      <button class="btn btn-info" href="" ng-click="vm.authService.login()">Log In/Register</a>
+    </li>
+</ul>
